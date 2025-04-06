@@ -1,0 +1,4157 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ショートカット</title>
+    <style>
+        /* ディスプレイエリアのスタイル */
+        .display-frame {
+            position: absolute;
+            top: 10px;
+            width: 730px;
+            height: 350px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 2px solid #666666;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 24px;
+            text-align: center;
+            min-height: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* キーボード全体のスタイル */
+        .keyboard {
+            position: absolute;
+            top: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* キーの行のスタイル */
+        .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        /* 各キーのスタイル */
+        .key {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        /* 幅の広いキーのスタイル */
+        .key.wide {
+            width: 60px;
+        }
+
+        /* 特殊キーのスタイル */
+        .special-key {
+            background-color: #d3d3d3;
+        }
+
+        .exceptional-key {
+            background-color: #88b4bc;
+        }
+
+        /* 左上のテキストスタイル */
+        .t-l {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            font-size: 12px;
+        }
+
+        /* 右下のテキストスタイル */
+        .b-r {
+            position: absolute;
+            bottom: 2px;
+            right: 5px;
+            font-size: 12px;
+        }
+
+        /* ホバー効果 */
+        .key:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* キーがアクティブな状態のスタイル */
+        .key.active {
+            background-color: #ccc;
+            transform: scale(0.95);
+            transition: all 0.1s;
+        }
+
+        /* フォーカススタイル */
+        .key:focus {
+            outline: 2px solid #4a90e2;
+            background-color: #e6e6e6;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 600px) {
+            .keyboard {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .key {
+                width: 22px;
+                height: 22px;
+                font-size: 12px;
+                margin: 2px;
+            }
+
+            .key.wide {
+                width: 30px;
+            }
+
+            .display-frame {
+                width: 90%;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ディスプレイエリア -->
+    <div id="displayFrame" class="display-frame">
+        <div id="navigation">
+            <button id="check">確認</button>
+            <button id="reset">リセット</button>
+            <button id="test">テスト</button>
+        </div>
+        <div id="maindisplay">
+            番号: <input type="number" id="wordIndex" min="1" max="" value="1">
+            <br>テスト: <span id="starttest">止</span>
+            <br> 確認: <span id="checkStatus">未</span>
+            <br class="fix">【操作】<span id="ope"></span></span>
+            <br class="fix">【ショートカット】<span id="short"></span>
+        </div>
+
+    </div>
+
+    <div id="keyboard" class="keyboard">
+        <!-- 0行目 -->
+        <div class="row">
+            <div class="key special-key" role="button" tabindex="0" aria-label="F1">F1</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F2">F2</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F3">F3</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F4">F4</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F5">F5</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F6">F6</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F7">F7</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F8">F8</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F9">F9</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F10">F10</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F11">F11</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="F12">F12</div>
+        </div>
+        <!-- 1行目 -->
+        <div class="row">
+            <div class="key" role="button" tabindex="0" aria-label="1">
+                <span class="b-r">1</span>
+                <span class="t-l">!</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="2">
+                <span class="b-r">2</span>
+                <span class="t-l">"</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="3">
+                <span class="b-r">3</span>
+                <span class="t-l">#</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="4">
+                <span class="b-r">4</span>
+                <span class="t-l">$</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="5">
+                <span class="b-r">5</span>
+                <span class="t-l">%</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="6">
+                <span class="b-r">6</span>
+                <span class="t-l">&amp;</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="7">
+                <span class="b-r">7</span>
+                <span class="t-l">'</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="8">
+                <span class="b-r">8</span>
+                <span class="t-l">(</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="9">
+                <span class="b-r">9</span>
+                <span class="t-l">)</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="0">0</div>
+            <div class="key" role="button" tabindex="0" aria-label="Minus">
+                <span class="b-r">-</span>
+                <span class="t-l">=</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Caret">
+                <span class="b-r">^</span>
+                <span class="t-l">~</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Backslash">
+                <span class="b-r">\</span>
+                <span class="t-l">|</span>
+            </div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="BS">BS</div>
+        </div>
+        <!-- 2行目 -->
+        <div class="row">
+            <div class="key special-key" role="button" tabindex="0" aria-label="Tab">Tab</div>
+            <div class="key" role="button" tabindex="0" aria-label="Q">Q</div>
+            <div class="key" role="button" tabindex="0" aria-label="W">W</div>
+            <div class="key" role="button" tabindex="0" aria-label="E">E</div>
+            <div class="key" role="button" tabindex="0" aria-label="R">R</div>
+            <div class="key" role="button" tabindex="0" aria-label="T">T</div>
+            <div class="key" role="button" tabindex="0" aria-label="Y">Y</div>
+            <div class="key" role="button" tabindex="0" aria-label="U">U</div>
+            <div class="key" role="button" tabindex="0" aria-label="I">I</div>
+            <div class="key" role="button" tabindex="0" aria-label="O">O</div>
+            <div class="key" role="button" tabindex="0" aria-label="P">P</div>
+            <div class="key" role="button" tabindex="0" aria-label="At">
+                <span class="b-r">@</span>
+                <span class="t-l">`</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Open Bracket">
+                <span class="b-r">[</span>
+                <span class="t-l">{</span>
+            </div>
+            <div class="key special-key wide" role="button" tabindex="0" aria-label="Enter">Enter</div>
+        </div>
+        <!-- 3行目 -->
+        <div class="row">
+            <div class="key special-key" role="button" tabindex="0" aria-label="Caps Lock">Caps</div>
+            <div class="key" role="button" tabindex="0" aria-label="A">A</div>
+            <div class="key" role="button" tabindex="0" aria-label="S">S</div>
+            <div class="key" role="button" tabindex="0" aria-label="D">D</div>
+            <div class="key" role="button" tabindex="0" aria-label="F">F</div>
+            <div class="key" role="button" tabindex="0" aria-label="G">G</div>
+            <div class="key" role="button" tabindex="0" aria-label="H">H</div>
+            <div class="key" role="button" tabindex="0" aria-label="J">J</div>
+            <div class="key" role="button" tabindex="0" aria-label="K">K</div>
+            <div class="key" role="button" tabindex="0" aria-label="L">L</div>
+            <div class="key" role="button" tabindex="0" aria-label="Semicolon">
+                <span class="b-r">;</span>
+                <span class="t-l">+</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Colon">
+                <span class="b-r">:</span>
+                <span class="t-l">*</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Close Bracket">
+                <span class="b-r">]</span>
+                <span class="t-l">}</span>
+            </div>
+        </div>
+        <!-- 4行目 -->
+        <div class="row">
+            <div id="shift" class="key special-key" role="button" tabindex="0" aria-label="Shift">Shift</div>
+            <div class="key" role="button" tabindex="0" aria-label="Z">Z</div>
+            <div class="key" role="button" tabindex="0" aria-label="X">X</div>
+            <div class="key" role="button" tabindex="0" aria-label="C">C</div>
+            <div class="key" role="button" tabindex="0" aria-label="V">V</div>
+            <div class="key" role="button" tabindex="0" aria-label="B">B</div>
+            <div class="key" role="button" tabindex="0" aria-label="N">N</div>
+            <div class="key" role="button" tabindex="0" aria-label="M">M</div>
+            <div class="key" role="button" tabindex="0" aria-label="Comma">
+                <span class="b-r">,</span>
+                <span class="t-l">&lt;</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Period">
+                <span class="b-r">.</span>
+                <span class="t-l">&gt;</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Slash">
+                <span class="b-r">/</span>
+                <span class="t-l">?</span>
+            </div>
+            <div class="key" role="button" tabindex="0" aria-label="Underscore">
+                <span class="b-r">\</span>
+                <span class="t-l">_</span>
+            </div>
+        </div>
+
+        <!-- 5行目 -->
+        <div class="row">
+            <div class="key special-key" role="button" tabindex="0" aria-label="Control">Ctrl</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="Function">Fn</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="Windows">Win</div>
+            <div class="key special-key" role="button" tabindex="0" aria-label="Alt">Alt</div>
+            <div class="key special-key wide" role="button" tabindex="0" aria-label="Space">Space</div>
+            <div class="key special-key " role="button" tabindex="0" aria-label="Home">Home</div>
+            <div class="key special-key " role="button" tabindex="0" aria-label="Page Up">PgUp</div>
+            <div class="key special-key " role="button" tabindex="0" aria-label="Page Down">PgDn</div>
+            <div class="key special-key " role="button" tabindex="0" aria-label="End">End</div>
+        </div>
+
+        <!-- 6行目 -->
+        <div class="row">
+            <div class="key" role="button" tabindex="0" aria-label="←">←</div>
+            <div class="key" role="button" tabindex="0" aria-label="↑">↑</div>
+            <div class="key" role="button" tabindex="0" aria-label="↓">↓</div>
+            <div class="key" role="button" tabindex="0" aria-label="→">→</div>
+            <div class="key" role="button" tabindex="0" aria-label="-">-</div>
+            <div class="key" role="button" tabindex="0" aria-label="+">+</div>
+            <div class="key exceptional-key" role="button" tabindex="0" aria-label="Del">Del</div>
+            <div id="prev" class="key exceptional-key " role="button" tabindex="0" aria-label="Back">Back</div>
+            <div id="next" class="key exceptional-key wide" role="button" tabindex="0" aria-label="Next">Next</div>
+            <div id="show" class="key exceptional-key wide" role="button" tabindex="0" aria-label="Anser">Anser</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let s_words = [
+                [
+                    "ID",
+                    "対象",
+                    "操作内容",
+                    "ショートカット",
+                    "回答",
+                    "item1",
+                    "item2",
+                    "item3",
+                    "item4"
+                ],
+                [
+                    "1",
+                    "ＥＤＧＥ",
+                    "[設定など]にフォーカスする",
+                    "Alt",
+                    "Alt",
+                    "Alt",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "2",
+                    "ＥＤＧＥ",
+                    "進む（戻る）",
+                    "Alt+→（←）",
+                    "Alt＆→（←）",
+                    "Alt＆→",
+                    "Alt＆←",
+                    "",
+                    ""
+                ],
+                [
+                    "3",
+                    "ＥＤＧＥ",
+                    "アドレスバーのURLを選択する",
+                    "Alt+D",
+                    "Alt＆D",
+                    "Alt＆D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "4",
+                    "ＥＤＧＥ",
+                    "[設定など]を開く",
+                    "Alt+E、Alt+F",
+                    "Alt＆E、Alt＆F",
+                    "Alt＆E",
+                    "Alt＆F",
+                    "",
+                    ""
+                ],
+                [
+                    "5",
+                    "ＥＤＧＥ",
+                    "ウィンドウを閉じる",
+                    "Alt+F4",
+                    "Alt＆F4",
+                    "Alt＆F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "6",
+                    "ＥＤＧＥ",
+                    "ホームページを開く",
+                    "Alt+Home",
+                    "Alt＆Home",
+                    "Alt＆Home",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "7",
+                    "ＥＤＧＥ",
+                    "お気に入りバーの最初の項目を選択する",
+                    "Alt+Shift+B",
+                    "Alt＆Shift＆B",
+                    "Alt＆Shift＆B",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "8",
+                    "ＥＤＧＥ",
+                    "[フィードバックの送信]を開く",
+                    "Alt+Shift+I",
+                    "Alt＆Shift＆I",
+                    "Alt＆Shift＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "9",
+                    "ＥＤＧＥ",
+                    "アプリバーツールバーの最初の項目を選択する",
+                    "Alt+Shift+T",
+                    "Alt＆Shift＆T",
+                    "Alt＆Shift＆T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "10",
+                    "ＥＤＧＥ",
+                    "画面拡大（縮小）",
+                    "Ctrl+＋（－）",
+                    "Ctrl＆+（－）",
+                    "Ctrl＆+",
+                    "Ctrl＆－",
+                    "",
+                    ""
+                ],
+                [
+                    "11",
+                    "ＥＤＧＥ",
+                    "現在のページを再読み込みする",
+                    "Ctrl+R",
+                    "Ctrl＆R",
+                    "Ctrl＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "12",
+                    "ＥＤＧＥ",
+                    "PDFを反時計回りに90度回転する",
+                    "Ctrl+[(PDFで)",
+                    "Ctrl＆[(PDFで)",
+                    "Ctrl＆[",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "13",
+                    "ＥＤＧＥ",
+                    "PDFを時計回りに90度回転する",
+                    "Ctrl+](PDFで)",
+                    "Ctrl＆](PDFで)",
+                    "Ctrl＆]",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "14",
+                    "ＥＤＧＥ",
+                    "PDFを[ページに合わせる]か[幅に合わせる]かを切り替える",
+                    "Ctrl+\\(PDFで)",
+                    "Ctrl＆\\(PDFで)",
+                    "Ctrl＆\\",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "15",
+                    "ＥＤＧＥ",
+                    "画面拡大をリセットする",
+                    "Ctrl+0",
+                    "Ctrl＆0",
+                    "Ctrl＆0",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "16",
+                    "ＥＤＧＥ",
+                    "特定のタブに切り替える",
+                    "Ctrl+1、2、...8",
+                    "Ctrl＆1、2、...8",
+                    "Ctrl＆1",
+                    "Ctrl＆８",
+                    "",
+                    ""
+                ],
+                [
+                    "17",
+                    "ＥＤＧＥ",
+                    "最後のタブに切り替える",
+                    "Ctrl+9",
+                    "Ctrl＆9",
+                    "Ctrl＆9",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "18",
+                    "ＥＤＧＥ",
+                    "お気に入りとして保存する",
+                    "Ctrl+D",
+                    "Ctrl＆D",
+                    "Ctrl＆D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "19",
+                    "ＥＤＧＥ",
+                    "アドレスバーで検索クエリを開く",
+                    "Ctrl+E、Ctrl+K",
+                    "Ctrl+E、Ctrl+K",
+                    "Ctrl＆E",
+                    "Ctrl＆K",
+                    "",
+                    ""
+                ],
+                [
+                    "20",
+                    "ＥＤＧＥ",
+                    "アドレスバーに入力したテキストの前後にwww.と.comを追加する",
+                    "Ctrl+Enter",
+                    "Ctrl＆Enter",
+                    "Ctrl＆Enter",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "21",
+                    "ＥＤＧＥ",
+                    "検索を開く",
+                    "Ctrl+F、F3",
+                    "Ctrl＆F、F3",
+                    "Ctrl＆F",
+                    "F3",
+                    "",
+                    ""
+                ],
+                [
+                    "22",
+                    "ＥＤＧＥ",
+                    "現在のタブを閉じる",
+                    "Ctrl+F4",
+                    "Ctrl＆F4",
+                    "Ctrl＆F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "23",
+                    "ＥＤＧＥ",
+                    "ページ上の検索の次の結果にジャンプする",
+                    "Ctrl+G",
+                    "Ctrl＆G",
+                    "Ctrl＆G",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "24",
+                    "ＥＤＧＥ",
+                    "履歴を開く",
+                    "Ctrl+H",
+                    "Ctrl＆H",
+                    "Ctrl＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "25",
+                    "ＥＤＧＥ",
+                    "ダウンロードを開く",
+                    "Ctrl+J",
+                    "Ctrl＆J",
+                    "Ctrl＆J",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "26",
+                    "ＥＤＧＥ",
+                    "アドレスバーのURLを選択して編集する",
+                    "Ctrl+L",
+                    "Ctrl＆L",
+                    "Ctrl＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "27",
+                    "ＥＤＧＥ",
+                    "現在のタブをミュートする(切り替え)",
+                    "Ctrl+M",
+                    "Ctrl＆M",
+                    "Ctrl＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "28",
+                    "ＥＤＧＥ",
+                    "新しいウィンドウを開く",
+                    "Ctrl+N",
+                    "Ctrl＆N",
+                    "Ctrl＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "29",
+                    "ＥＤＧＥ",
+                    "コンピューターのファイルをMicrosoftEdgeで開く",
+                    "Ctrl+O",
+                    "Ctrl＆O",
+                    "Ctrl＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "30",
+                    "ＥＤＧＥ",
+                    "現在のページを印刷する",
+                    "Ctrl+P",
+                    "Ctrl＆P",
+                    "Ctrl＆P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "31",
+                    "ＥＤＧＥ",
+                    "次のタブに切り替える",
+                    "Ctrl+PgDn",
+                    "Ctrl＆PgDn",
+                    "Ctrl＆PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "32",
+                    "ＥＤＧＥ",
+                    "前のタブに切り替える",
+                    "Ctrl+PgUp",
+                    "Ctrl＆PgUp",
+                    "Ctrl＆PgUp",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "33",
+                    "ＥＤＧＥ",
+                    "現在のページを保存する",
+                    "Ctrl+S",
+                    "Ctrl＆S",
+                    "Ctrl＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "34",
+                    "ＥＤＧＥ",
+                    "お気に入りバーの表示/非表示を切り替える",
+                    "Ctrl+Shift+B",
+                    "Ctrl＆Shift＆B",
+                    "Ctrl＆Shift＆B",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "35",
+                    "ＥＤＧＥ",
+                    "開いているすべてのタブをお気に入りとして保存する",
+                    "Ctrl+Shift+D",
+                    "Ctrl＆Shift＆D",
+                    "Ctrl＆Shift＆D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "36",
+                    "ＥＤＧＥ",
+                    "閲覧データを消去するオプションを開く",
+                    "Ctrl+Shift+Delete",
+                    "Ctrl＆Shift＆Delete",
+                    "Ctrl＆Shift＆Delete",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "37",
+                    "ＥＤＧＥ",
+                    "サイドバーで検索を開く",
+                    "Ctrl+Shift+E",
+                    "Ctrl＆Shift＆E",
+                    "Ctrl＆Shift＆E",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "38",
+                    "ＥＤＧＥ",
+                    "ページ上の検索の前の結果にジャンプする",
+                    "Ctrl+Shift+G",
+                    "Ctrl＆Shift＆G",
+                    "Ctrl＆Shift＆G",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "39",
+                    "ＥＤＧＥ",
+                    "開発者ツールを開く",
+                    "Ctrl+Shift+I",
+                    "Ctrl＆Shift＆I",
+                    "Ctrl＆Shift＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "40",
+                    "ＥＤＧＥ",
+                    "現在のタブを複製する",
+                    "Ctrl+Shift+K",
+                    "Ctrl＆Shift＆K",
+                    "Ctrl＆Shift＆K",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "41",
+                    "ＥＤＧＥ",
+                    "貼り付けて検索または貼り付けて移動(URLの場合)",
+                    "Ctrl+Shift+L",
+                    "Ctrl＆Shift＆L",
+                    "Ctrl＆Shift＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "42",
+                    "ＥＤＧＥ",
+                    "別のユーザーとしてサインインする",
+                    "Ctrl+Shift+M",
+                    "Ctrl＆Shift＆M",
+                    "Ctrl＆Shift＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "43",
+                    "ＥＤＧＥ",
+                    "新しいInPrivateウィンドウを表示する",
+                    "Ctrl+Shift+N",
+                    "Ctrl＆Shift＆N",
+                    "Ctrl＆Shift＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "44",
+                    "ＥＤＧＥ",
+                    "お気に入りを開く",
+                    "Ctrl+Shift+O",
+                    "Ctrl＆Shift＆O",
+                    "Ctrl＆Shift＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "45",
+                    "ＥＤＧＥ",
+                    "システムダイアログを使用して印刷する",
+                    "Ctrl+Shift+P",
+                    "Ctrl＆Shift＆P",
+                    "Ctrl＆Shift＆P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "46",
+                    "ＥＤＧＥ",
+                    "現在のページを再読み込みしてキャッシュされたコンテンツを無視する",
+                    "Ctrl+Shift+R",
+                    "Ctrl＆Shift＆R",
+                    "Ctrl＆Shift＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "47",
+                    "ＥＤＧＥ",
+                    "最後に閉じたタブをもう一度開いて、そのタブに切り替える",
+                    "Ctrl+Shift+T",
+                    "Ctrl＆Shift＆T",
+                    "Ctrl＆Shift＆T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "48",
+                    "ＥＤＧＥ",
+                    "前のタブに切り替える",
+                    "Ctrl+Shift+Tab",
+                    "Ctrl＆Shift＆Tab",
+                    "Ctrl＆Shift＆Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "49",
+                    "ＥＤＧＥ",
+                    "音声での読み上げを開始または停止する",
+                    "Ctrl+Shift+U",
+                    "Ctrl＆Shift＆U",
+                    "Ctrl＆Shift＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "50",
+                    "ＥＤＧＥ",
+                    "書式設定なしで貼り付ける",
+                    "Ctrl+Shift+V",
+                    "Ctrl＆Shift＆V",
+                    "Ctrl＆Shift＆V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "51",
+                    "ＥＤＧＥ",
+                    "現在のウィンドウを閉じる",
+                    "Ctrl+Shift+W",
+                    "Ctrl＆Shift＆W",
+                    "Ctrl＆Shift＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "52",
+                    "ＥＤＧＥ",
+                    "コレクションを開く",
+                    "Ctrl+Shift+Y",
+                    "Ctrl＆Shift＆Y",
+                    "Ctrl＆Shift＆Y",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "53",
+                    "ＥＤＧＥ",
+                    "新しいタブを開き、そのタブに切り替える",
+                    "Ctrl+T",
+                    "Ctrl＆T",
+                    "Ctrl＆T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "54",
+                    "ＥＤＧＥ",
+                    "次のタブに切り替える",
+                    "Ctrl+Tab",
+                    "Ctrl＆Tab",
+                    "Ctrl＆Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "55",
+                    "ＥＤＧＥ",
+                    "ソースを表示する",
+                    "Ctrl+U",
+                    "Ctrl＆U",
+                    "Ctrl＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "56",
+                    "ＥＤＧＥ",
+                    "現在のタブを閉じる",
+                    "Ctrl+W",
+                    "Ctrl＆W",
+                    "Ctrl＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "57",
+                    "ＥＤＧＥ",
+                    "拡大（縮小）",
+                    "Ctrl+＋（－）",
+                    "Ctrl＆+（－）",
+                    "Ctrl＆+",
+                    "Ctrl＆－",
+                    "",
+                    ""
+                ],
+                [
+                    "58",
+                    "ＥＤＧＥ",
+                    "ページの下部に移動",
+                    "End",
+                    "End",
+                    "End",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "59",
+                    "ＥＤＧＥ",
+                    "ダイアログまたはポップアップを閉じる",
+                    "Esc",
+                    "Esc",
+                    "Esc",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "60",
+                    "ＥＤＧＥ",
+                    "ヘルプを開く",
+                    "F1",
+                    "F1",
+                    "F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "61",
+                    "ＥＤＧＥ",
+                    "[設定]ボタンにフォーカス",
+                    "F10",
+                    "F10",
+                    "F10",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "62",
+                    "ＥＤＧＥ",
+                    "全画面表示モードにする(切り替え)",
+                    "F11",
+                    "F11",
+                    "F11",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "63",
+                    "ＥＤＧＥ",
+                    "開発者ツールを開く",
+                    "F12",
+                    "F12",
+                    "F12",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "64",
+                    "ＥＤＧＥ",
+                    "アドレスバーのURLを選択する",
+                    "F4",
+                    "F4",
+                    "F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "65",
+                    "ＥＤＧＥ",
+                    "現在のタブを再読み込みする",
+                    "F5",
+                    "F5",
+                    "F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "66",
+                    "ＥＤＧＥ",
+                    "次のウィンドウにフォーカスを移動する",
+                    "F6",
+                    "F6",
+                    "F6",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "67",
+                    "ＥＤＧＥ",
+                    "カーソルブラウズをオンまたはオフにする",
+                    "F7",
+                    "F7",
+                    "F7",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "68",
+                    "ＥＤＧＥ",
+                    "イマーシブリーダーを入力または終了する",
+                    "F9",
+                    "F9",
+                    "F9",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "69",
+                    "ＥＤＧＥ",
+                    "Webページを一度に1画面ずつ下へスクロールする",
+                    "PgDn",
+                    "PgDn",
+                    "PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "70",
+                    "ＥＤＧＥ",
+                    "Webページを一度に1画面ずつ上へスクロールする",
+                    "PgUp",
+                    "PgUp",
+                    "PgUp",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "71",
+                    "ＥＤＧＥ",
+                    "コンテキストメニューを開く",
+                    "Shift+F10",
+                    "Shift＆F10",
+                    "Shift＆F10",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "72",
+                    "ＥＤＧＥ",
+                    "現在のページを再読み込みして、キャッシュの内容を無視する",
+                    "Shift+F5",
+                    "Shift＆F5",
+                    "Shift＆F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "73",
+                    "ＥＤＧＥ",
+                    "前のウィンドウにフォーカスを移動する",
+                    "Shift+F6",
+                    "Shift＆F6",
+                    "Shift＆F6",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "74",
+                    "ＥＤＧＥ",
+                    "Webページを一度に1画面ずつ上へスクロールする",
+                    "Shift+Spaceキー",
+                    "Shift＆Spaceキー",
+                    "Shift＆Spaceキー",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "75",
+                    "ＥＤＧＥ",
+                    "前のタブ位置に移動する",
+                    "Shift+Tab",
+                    "Shift＆Tab",
+                    "Shift＆Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "76",
+                    "ＥＤＧＥ",
+                    "Webページを一度に1画面ずつ下へスクロールする",
+                    "Spaceキー",
+                    "Space",
+                    "Space",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "77",
+                    "ＥＤＧＥ",
+                    "次のタブ位置に移動する",
+                    "Tab",
+                    "Tab",
+                    "Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "78",
+                    "ＥＤＧＥ",
+                    "ページの上部に移動して、ウィンドウ内の最初の項目にキーボードフォーカスを移動する",
+                    "ホーム",
+                    "Home",
+                    "Home",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "79",
+                    "エクセル",
+                    "下(上)方向に画面スクロールする",
+                    "PgDn(PgUp)",
+                    "PgDn(PgUp)",
+                    "PgDn",
+                    "PgUp",
+                    "",
+                    ""
+                ],
+                [
+                    "80",
+                    "エクセル",
+                    "右(左)方向に画面スクロールする",
+                    "Alt&PgDn(PgUp)",
+                    "Alt&PgDn(PgUp)",
+                    "Alt&PgDn",
+                    "Alt&PgUp",
+                    "",
+                    ""
+                ],
+                [
+                    "81",
+                    "エクセル",
+                    "セル内で改行する",
+                    "Alt&Enter",
+                    "Alt&Enter",
+                    "Alt&Enter",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "82",
+                    "エクセル",
+                    "埋め込みグラフを作成する",
+                    "Alt&F1",
+                    "Alt&F1",
+                    "Alt&F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "83",
+                    "エクセル",
+                    "VBAエディターを起動する",
+                    "Alt&F11",
+                    "Alt&F11",
+                    "Alt&F11",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "84",
+                    "エクセル",
+                    "現在開いているアプリケーションを終了する",
+                    "Alt&F4",
+                    "Alt&F4",
+                    "Alt&F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "85",
+                    "エクセル",
+                    "データを更新する",
+                    "Alt&F5",
+                    "Alt&F5",
+                    "Alt&F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "86",
+                    "エクセル",
+                    "ふりがなを編集する",
+                    "Alt&Shift&↑",
+                    "Alt&Shift&↑",
+                    "Alt&Shift&↑",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "87",
+                    "エクセル",
+                    "グループ化する",
+                    "Alt&Shift&→",
+                    "Alt&Shift&→",
+                    "Alt&Shift&→",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "88",
+                    "エクセル",
+                    "ふりがなの編集を終了する",
+                    "Alt&Shift&↓",
+                    "Alt&Shift&↓",
+                    "Alt&Shift&↓",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "89",
+                    "エクセル",
+                    "グループ化を解除する",
+                    "Alt&Shift&←",
+                    "Alt&Shift&←",
+                    "Alt&Shift&←",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "90",
+                    "エクセル",
+                    "シートを全画面表示にする",
+                    "Ctrl&Shift&F1",
+                    "Ctrl&Shift&F1",
+                    "Ctrl&Shift&F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "91",
+                    "エクセル",
+                    "起動しているアプリケーションを切り替える",
+                    "Alt&Tab",
+                    "Alt&Tab",
+                    "Alt&Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "92",
+                    "エクセル",
+                    "ショートカットガイドを開く",
+                    "Alt、F10",
+                    "Alt、F10",
+                    "Alt",
+                    "F10",
+                    "",
+                    ""
+                ],
+                [
+                    "93",
+                    "エクセル",
+                    "区切り位置の変更",
+                    "Alt+A+E",
+                    "Alt＆A＆E",
+                    "Alt＆A＆E",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "94",
+                    "エクセル",
+                    "重複を削除する",
+                    "Alt+A+M",
+                    "Alt＆A＆M",
+                    "Alt＆A＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "95",
+                    "エクセル",
+                    "データの入力規則を解除する",
+                    "Alt+A+V+R",
+                    "Alt＆A＆V＆R",
+                    "Alt＆A＆V＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "96",
+                    "エクセル",
+                    "データの入力規則を設定する",
+                    "Alt+A+V+V、Alt+D+L",
+                    "Alt＆A＆V＆V、Alt＆D＆L",
+                    "Alt＆A＆V＆V",
+                    "Alt＆D＆L",
+                    "",
+                    ""
+                ],
+                [
+                    "97",
+                    "エクセル",
+                    "すべてフィルターをクリアする",
+                    "Alt+D+F+S、Alt+H+S+C",
+                    "Alt＆D＆F＆S、Alt＆H＆S＆C",
+                    "Alt＆D＆F＆S",
+                    "Alt＆H＆S＆C",
+                    "",
+                    ""
+                ],
+                [
+                    "98",
+                    "エクセル",
+                    "ハイパーリンクを削除する",
+                    "Alt+E+A+R",
+                    "Alt＆E＆A＆R",
+                    "Alt＆E＆A＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "99",
+                    "エクセル",
+                    "右のセルを左にコピーする",
+                    "Alt+E+I+L",
+                    "Alt＆E＆I＆L",
+                    "Alt＆E＆I＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "100",
+                    "エクセル",
+                    "連番を振る",
+                    "Alt+E+I+S",
+                    "Alt＆E＆I＆S",
+                    "Alt＆E＆I＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "101",
+                    "エクセル",
+                    "下のセルを上にコピーする",
+                    "Alt+E+I+U",
+                    "Alt＆E＆I＆U",
+                    "Alt＆E＆I＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "102",
+                    "エクセル",
+                    "シートを削除する",
+                    "Alt+E+L、Alt+H+D+S",
+                    "Alt＆E＆L、Alt＆H＆D＆S",
+                    "Alt＆E＆L",
+                    "Alt＆H＆D＆S",
+                    "",
+                    ""
+                ],
+                [
+                    "103",
+                    "エクセル",
+                    "(コピーした状態で)形式を選択して貼り付けボックスを開く",
+                    "Alt+E+S、Ctrl+Thift+V",
+                    "Alt＆E＆S、Ctrl＆Thift＆V",
+                    "Alt＆E＆S",
+                    "Ctrl＆Thift&V",
+                    "",
+                    ""
+                ],
+                [
+                    "104",
+                    "エクセル",
+                    "印刷する",
+                    "Alt+F+P、Ctrl＆P",
+                    "Alt＆F＆P、Ctrl＆P",
+                    "Alt＆F＆P",
+                    "Ctrl＆P",
+                    "",
+                    ""
+                ],
+                [
+                    "105",
+                    "エクセル",
+                    "セルを中央揃えにする",
+                    "Alt+H+A+C",
+                    "Alt＆H＆A＆C",
+                    "Alt＆H＆A＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "106",
+                    "エクセル",
+                    "文字を中央揃えにする",
+                    "Alt+H+A+C",
+                    "Alt＆H＆A＆C",
+                    "Alt＆H＆A＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "107",
+                    "エクセル",
+                    "文字を左揃えにする",
+                    "Alt+H+A+L",
+                    "Alt＆H＆A＆L",
+                    "Alt＆H＆A＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "108",
+                    "エクセル",
+                    "文字を右揃えにする",
+                    "Alt+H+A+R",
+                    "Alt＆H＆A＆R",
+                    "Alt＆H＆A＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "109",
+                    "エクセル",
+                    "格子線(罫線)を引く",
+                    "Alt+H+B+A",
+                    "Alt＆H＆B＆A",
+                    "Alt＆H＆B＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "110",
+                    "エクセル",
+                    "格子線の書式設定を開く",
+                    "Alt+H+B+M",
+                    "Alt＆H＆B＆M",
+                    "Alt＆H＆B＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "111",
+                    "エクセル",
+                    "格子線(罫線)をとる",
+                    "Alt+H+B+N",
+                    "Alt＆H＆B＆N",
+                    "Alt＆H＆B＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "112",
+                    "エクセル",
+                    "外枠を引く",
+                    "Alt+H+B+S",
+                    "Alt＆H＆B＆S",
+                    "Alt＆H＆B＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "113",
+                    "エクセル",
+                    "文字色を変更する",
+                    "Alt+H+F+C",
+                    "Alt＆H＆F＆C",
+                    "Alt＆H＆F＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "114",
+                    "エクセル",
+                    "フォントを変更する",
+                    "Alt+H+F+F",
+                    "Alt＆H＆F＆F",
+                    "Alt＆H＆F＆F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "115",
+                    "エクセル",
+                    "フォントサイズを変更する",
+                    "Alt+H+F+S",
+                    "Alt＆H＆F＆S",
+                    "Alt＆H＆F＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "116",
+                    "エクセル",
+                    "セルの色(背景色)を変更する",
+                    "Alt+H+H",
+                    "Alt＆H＆H",
+                    "Alt＆H＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "117",
+                    "エクセル",
+                    "背景色をとる",
+                    "Alt+H+H+N",
+                    "Alt＆H＆H＆N",
+                    "Alt＆H＆H＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "118",
+                    "エクセル",
+                    "数字の表示形式を桁区切りスタイルにする(マイナスは赤字)",
+                    "Alt+H+K",
+                    "Alt＆H＆K",
+                    "Alt＆H＆K",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "119",
+                    "エクセル",
+                    "条件付き書式を解除する",
+                    "Alt+H+L+C+S",
+                    "Alt＆H＆L＆C＆S",
+                    "Alt＆H＆L＆C＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "120",
+                    "エクセル",
+                    "条件付き書式を設定する",
+                    "Alt+H+L+N",
+                    "Alt＆H＆L＆N",
+                    "Alt＆H＆L＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "121",
+                    "エクセル",
+                    "セルを結合して中央揃え",
+                    "Alt+H+M+A",
+                    "Alt＆H＆M＆A",
+                    "Alt＆H＆M＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "122",
+                    "エクセル",
+                    "セルを結合する",
+                    "Alt+H+M+M",
+                    "Alt＆H＆M＆M",
+                    "Alt＆H＆M＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "123",
+                    "エクセル",
+                    "セル結合を解除する",
+                    "Alt+H+M+U",
+                    "Alt＆H＆M＆U",
+                    "Alt＆H＆M＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "124",
+                    "エクセル",
+                    "行の高さの自動調整を行う",
+                    "Alt+H+O+A",
+                    "Alt＆H＆O＆A",
+                    "Alt＆H＆O＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "125",
+                    "エクセル",
+                    "行の高さを任意に変更する",
+                    "Alt+H+O+H",
+                    "Alt＆H＆O＆H",
+                    "Alt＆H＆O＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "126",
+                    "エクセル",
+                    "列幅の自動調整を行う",
+                    "Alt+H+O+I",
+                    "Alt＆H＆O＆I",
+                    "Alt＆H＆O＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "127",
+                    "エクセル",
+                    "シートを移動/コピーする",
+                    "Alt+H+O+M、Alt+E+M",
+                    "Alt＆H＆O＆M、Alt＆E＆M",
+                    "Alt＆H＆O＆M",
+                    "Alt＆E＆M",
+                    "",
+                    ""
+                ],
+                [
+                    "128",
+                    "エクセル",
+                    "シート名を変更する",
+                    "Alt+H+O+R、Alt+O+H+R",
+                    "Alt＆H＆O＆R、Alt＆O＆H＆R",
+                    "Alt＆H＆O＆R",
+                    "Alt＆O＆H＆R",
+                    "",
+                    ""
+                ],
+                [
+                    "129",
+                    "エクセル",
+                    "シート見出しの色を変更する",
+                    "Alt+H+O+T",
+                    "Alt＆H＆O＆T",
+                    "Alt＆H＆O＆T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "130",
+                    "エクセル",
+                    "非表示シートを再表示する",
+                    "Alt+H+O+U+H",
+                    "Alt＆H＆O＆U＆H",
+                    "Alt＆H＆O＆U＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "131",
+                    "エクセル",
+                    "選択シートを非表示にする",
+                    "Alt+H+O+U+S",
+                    "Alt＆H＆O＆U＆S",
+                    "Alt＆H＆O＆U＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "132",
+                    "エクセル",
+                    "列幅を任意に変更する",
+                    "Alt+H+O+W",
+                    "Alt＆H＆O＆W",
+                    "Alt＆H＆O＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "133",
+                    "エクセル",
+                    "降順に並べ替える",
+                    "Alt+H+S+O",
+                    "Alt＆H＆S＆O",
+                    "Alt＆H＆S＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "134",
+                    "エクセル",
+                    "昇順に並び替える",
+                    "Alt+H+S+S",
+                    "Alt＆H＆S＆S",
+                    "Alt＆H＆S＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "135",
+                    "エクセル",
+                    "文字を折り返して全体を表示する",
+                    "Alt+H+W",
+                    "Alt＆H＆W",
+                    "Alt＆H＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "136",
+                    "エクセル",
+                    "列を挿入する",
+                    "Alt+I+C",
+                    "Alt＆I＆C",
+                    "Alt＆I＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "137",
+                    "エクセル",
+                    "グラフを挿入する",
+                    "Alt+I+H",
+                    "Alt＆I＆H",
+                    "Alt＆I＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "138",
+                    "エクセル",
+                    "行を挿入する",
+                    "Alt+I+R",
+                    "Alt＆I＆R",
+                    "Alt＆I＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "139",
+                    "エクセル",
+                    "シートを追加する",
+                    "Alt+I+W，Shift&F11",
+                    "Alt＆I＆W，Shift&F11",
+                    "Alt＆I＆W",
+                    "Shift&F11",
+                    "",
+                    ""
+                ],
+                [
+                    "140",
+                    "エクセル",
+                    "AVERAGE関数を挿入する",
+                    "Alt+M+U+A",
+                    "Alt＆M＆U＆A",
+                    "Alt＆M＆U＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "141",
+                    "エクセル",
+                    "COUNT関数を挿入する",
+                    "Alt+M+U+C",
+                    "Alt＆M＆U＆C",
+                    "Alt＆M＆U＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "142",
+                    "エクセル",
+                    "MIN関数を挿入する",
+                    "Alt+M+U+I",
+                    "Alt＆M＆U＆I",
+                    "Alt＆M＆U＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "143",
+                    "エクセル",
+                    "MAX関数を挿入する",
+                    "Alt+M+U+M",
+                    "Alt＆M＆U＆M",
+                    "Alt＆M＆U＆M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "144",
+                    "エクセル",
+                    "SUM関数を挿入する",
+                    "Alt+M+U+S、Alt+Shift+＝",
+                    "Alt＆M＆U＆S、Alt＆Shift＆＝",
+                    "Alt＆M＆U＆S",
+                    "Alt＆Shift＆＝",
+                    "",
+                    ""
+                ],
+                [
+                    "145",
+                    "エクセル",
+                    "縦棒グラフを挿入する",
+                    "Alt+N+C",
+                    "Alt＆N＆C",
+                    "Alt＆N＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "146",
+                    "エクセル",
+                    "画像の挿入を表示する",
+                    "Alt+N+F",
+                    "Alt＆N＆F",
+                    "Alt＆N＆F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "147",
+                    "エクセル",
+                    "画像ファイルを挿入する",
+                    "Alt+N+P",
+                    "Alt＆N＆P",
+                    "Alt＆N＆P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "148",
+                    "エクセル",
+                    "ピボットテーブルを挿入する",
+                    "Alt+N+V",
+                    "Alt＆N＆V",
+                    "Alt＆N＆V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "149",
+                    "エクセル",
+                    "シートを保護する",
+                    "Alt+R+P+S",
+                    "Alt＆R＆P＆S",
+                    "Alt＆R＆P＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "150",
+                    "エクセル",
+                    "ブックを保護する",
+                    "Alt+R+P+W",
+                    "Alt＆R＆P＆W",
+                    "Alt＆R＆P＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "151",
+                    "エクセル",
+                    "Excelのオプションを開く",
+                    "Alt+T+O",
+                    "Alt＆T＆O",
+                    "Alt＆T＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "152",
+                    "エクセル",
+                    "ヘッダー/フッターの編集を行う",
+                    "Alt+V+H",
+                    "Alt＆V＆H",
+                    "Alt＆V＆H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "153",
+                    "エクセル",
+                    "表示を標準にする",
+                    "Alt+V+N",
+                    "Alt＆V＆N",
+                    "Alt＆V＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "154",
+                    "エクセル",
+                    "表示を改ページプレビューにする",
+                    "Alt+V+P",
+                    "Alt＆V＆P",
+                    "Alt＆V＆P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "155",
+                    "エクセル",
+                    "シートを全画面表示にする(Escで解除不可)",
+                    "Alt+V+U",
+                    "Alt＆V＆U",
+                    "Alt＆V＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "156",
+                    "エクセル",
+                    "ウィンドウ枠を固定/解除する",
+                    "Alt+W+F+F",
+                    "Alt＆W＆F＆F",
+                    "Alt＆W＆F＆F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "157",
+                    "エクセル",
+                    "表示サイズを100%にする",
+                    "Alt+W+J",
+                    "Alt＆W＆J",
+                    "Alt＆W＆J",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "158",
+                    "エクセル",
+                    "ズームウィンドウを開く",
+                    "Alt+W+Q",
+                    "Alt＆W＆Q",
+                    "Alt＆W＆Q",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "159",
+                    "エクセル",
+                    "シートの枠線を非表示/表示する",
+                    "Alt+W+V+G",
+                    "Alt＆W＆V＆G",
+                    "Alt＆W＆V＆G",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "160",
+                    "エクセル",
+                    "行（列）を削除する",
+                    "Ctrl&－",
+                    "Ctrl&－",
+                    "Ctrl&－",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "161",
+                    "エクセル",
+                    "A1セルに移動する",
+                    "Ctrl&Home",
+                    "Ctrl&Home",
+                    "Ctrl&Home",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "162",
+                    "エクセル",
+                    "右（左）のシートに移動する",
+                    "Ctrl&PgDn(PgUp）",
+                    "Ctrl&PgDn(PgUp）",
+                    "Ctrl&PgDn",
+                    "Ctrl&PgUp",
+                    "",
+                    ""
+                ],
+                [
+                    "163",
+                    "エクセル",
+                    "選択範囲の四隅に移動する",
+                    "Ctrl&．",
+                    "Ctrl&．",
+                    "Ctrl&．",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "164",
+                    "エクセル",
+                    "現在の時刻を入力する",
+                    "Ctrl&：",
+                    "Ctrl&：",
+                    "Ctrl&：",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "165",
+                    "エクセル",
+                    "今日の日付を入力する",
+                    "Ctrl&；",
+                    "Ctrl&；",
+                    "Ctrl&；",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "166",
+                    "エクセル",
+                    "参照しているセルを選択する",
+                    "Ctrl&[",
+                    "Ctrl&[",
+                    "Ctrl&[",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "167",
+                    "エクセル",
+                    "列を非表示にする",
+                    "Ctrl&0",
+                    "Ctrl&0",
+                    "Ctrl&0",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "168",
+                    "エクセル",
+                    "行を非表示にする",
+                    "Ctrl&9",
+                    "Ctrl&9",
+                    "Ctrl&9",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "169",
+                    "エクセル",
+                    "セルの書式設定を開く",
+                    "Ctrl&1",
+                    "Ctrl&1",
+                    "Ctrl&1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "170",
+                    "エクセル",
+                    "取り消し線をつける",
+                    "Ctrl&5",
+                    "Ctrl&5",
+                    "Ctrl&5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "171",
+                    "エクセル",
+                    "すべてのセルを選択する、表を選択する",
+                    "Ctrl&A",
+                    "Ctrl&A",
+                    "Ctrl&A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "172",
+                    "エクセル",
+                    "(コピーした状態で)形式を選択して貼り付けボックスを開く",
+                    "Ctrl&Alt&V",
+                    "Ctrl&Alt&V",
+                    "Ctrl&Alt&V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "173",
+                    "エクセル",
+                    "太字にする",
+                    "Ctrl&B",
+                    "Ctrl&B",
+                    "Ctrl&B",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "174",
+                    "エクセル",
+                    "アクティブセルを表示する",
+                    "Ctrl&Backspace",
+                    "Ctrl&Backspace",
+                    "Ctrl&BS",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "175",
+                    "エクセル",
+                    "選択セルをコピーする",
+                    "Ctrl&C",
+                    "Ctrl&C",
+                    "Ctrl&C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "176",
+                    "エクセル",
+                    "セルを下にコピー",
+                    "Ctrl&D",
+                    "Ctrl&D",
+                    "Ctrl&D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "177",
+                    "エクセル",
+                    "文字列を検索する",
+                    "Ctrl&F",
+                    "Ctrl&F",
+                    "Ctrl&F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "178",
+                    "エクセル",
+                    "リボンを非表示/再表示にする",
+                    "Ctrl&F1",
+                    "Ctrl&F1",
+                    "Ctrl&F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "179",
+                    "エクセル",
+                    "(半角モードで)ウィンドウサイズを最大化、または元に戻す",
+                    "Ctrl&F10",
+                    "Ctrl&F10",
+                    "Ctrl&F10",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "180",
+                    "エクセル",
+                    "マクロシートを挿入する",
+                    "Ctrl&F11",
+                    "Ctrl&F11",
+                    "Ctrl&F11",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "181",
+                    "エクセル",
+                    "ウィンドウサイズを元に戻す",
+                    "Ctrl&F5",
+                    "Ctrl&F5",
+                    "Ctrl&F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "182",
+                    "エクセル",
+                    "ウィンドウサイズを矢印キーで変更する",
+                    "Ctrl&F8",
+                    "Ctrl&F8",
+                    "Ctrl&F8",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "183",
+                    "エクセル",
+                    "ウィンドウを最小化する",
+                    "Ctrl&F9",
+                    "Ctrl&F9",
+                    "Ctrl&F9",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "184",
+                    "エクセル",
+                    "ジャンプダイアログボックスの表示",
+                    "Ctrl&G、F５",
+                    "Ctrl&G、F５",
+                    "Ctrl&G",
+                    "F５",
+                    "",
+                    ""
+                ],
+                [
+                    "185",
+                    "エクセル",
+                    "文字列を置換する",
+                    "Ctrl&H",
+                    "Ctrl&H",
+                    "Ctrl&H",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "186",
+                    "エクセル",
+                    "斜体にする",
+                    "Ctrl&I",
+                    "Ctrl&I",
+                    "Ctrl&I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "187",
+                    "エクセル",
+                    "ハイパーリンクを設定する",
+                    "Ctrl&K",
+                    "Ctrl&K",
+                    "Ctrl&K",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "188",
+                    "エクセル",
+                    "ファイルを新規作成する",
+                    "Ctrl&N",
+                    "Ctrl&N",
+                    "Ctrl&N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "189",
+                    "エクセル",
+                    "ファイルを開く",
+                    "Ctrl&O",
+                    "Ctrl&O",
+                    "Ctrl&O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "190",
+                    "エクセル",
+                    "ファイルを印刷する",
+                    "Ctrl&P",
+                    "Ctrl&P",
+                    "Ctrl&P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "191",
+                    "エクセル",
+                    "左のセルを右にコピーする",
+                    "Ctrl&R",
+                    "Ctrl&R",
+                    "Ctrl&R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "192",
+                    "エクセル",
+                    "ファイルを上書き保存する",
+                    "Ctrl&S",
+                    "Ctrl&S",
+                    "Ctrl&S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "193",
+                    "エクセル",
+                    "テーブルを作成する",
+                    "Ctrl&T",
+                    "Ctrl&T",
+                    "Ctrl&T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "194",
+                    "エクセル",
+                    "次のブックに移動する",
+                    "Ctrl&Tab",
+                    "Ctrl&Tab",
+                    "Ctrl&Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "195",
+                    "エクセル",
+                    "下線を引く",
+                    "Ctrl&U",
+                    "Ctrl&U",
+                    "Ctrl&U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "196",
+                    "エクセル",
+                    "貼り付ける",
+                    "Ctrl&V",
+                    "Ctrl&V",
+                    "Ctrl&V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "197",
+                    "エクセル",
+                    "選択したウィンドウを閉じる",
+                    "Ctrl&W",
+                    "Ctrl&W",
+                    "Ctrl&W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "198",
+                    "エクセル",
+                    "選択セルを切り取る",
+                    "Ctrl&X",
+                    "Ctrl&X",
+                    "Ctrl&X",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "199",
+                    "エクセル",
+                    "一つ先の操作に進む",
+                    "Ctrl&Y",
+                    "Ctrl&Y",
+                    "Ctrl&Y",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "200",
+                    "エクセル",
+                    "一つ前の操作に戻る",
+                    "Ctrl&Z",
+                    "Ctrl&Z",
+                    "Ctrl&Z",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "201",
+                    "エクセル",
+                    "矢印方向にワープ移動する",
+                    "Ctrl&矢印",
+                    "Ctrl&矢印",
+                    "Ctrl&→",
+                    "Ctrl&←",
+                    "Ctrl&↑",
+                    "Ctrl&↓"
+                ],
+                [
+                    "202",
+                    "エクセル",
+                    "表（の範囲）を選択する",
+                    "Ctrl&Shift&:",
+                    "Ctrl&Shift&:",
+                    "Ctrl&Shift&:",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "203",
+                    "エクセル",
+                    "セルの数式を表示する",
+                    "Ctrl&Shift&@",
+                    "Ctrl&Shift&@",
+                    "Ctrl&Shift&@",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "204",
+                    "エクセル",
+                    "非表示になっている列を再表示する",
+                    "Ctrl&Shift&0",
+                    "Ctrl&Shift&0",
+                    "Ctrl&Shift&0",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "205",
+                    "エクセル",
+                    "数字の表示形式を桁区切りスタイルにする(マイナスは黒字)",
+                    "Ctrl&Shift&1",
+                    "Ctrl&Shift&1",
+                    "Ctrl&Shift&1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "206",
+                    "エクセル",
+                    "上のセルの値をコピーする",
+                    "Ctrl&Shift&2",
+                    "Ctrl&Shift&2",
+                    "Ctrl&Shift&2",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "207",
+                    "エクセル",
+                    "数字の表示形式を日付スタイルにする",
+                    "Ctrl&Shift&3",
+                    "Ctrl&Shift&3",
+                    "Ctrl&Shift&3",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "208",
+                    "エクセル",
+                    "数字の表示形式を金額スタイルにする",
+                    "Ctrl&Shift&4",
+                    "Ctrl&Shift&4",
+                    "Ctrl&Shift&4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "209",
+                    "エクセル",
+                    "数字の表示形式を%スタイルにする",
+                    "Ctrl&Shift&5",
+                    "Ctrl&Shift&5",
+                    "Ctrl&Shift&5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "210",
+                    "エクセル",
+                    "外枠罫線を引く",
+                    "Ctrl&Shift&6",
+                    "Ctrl&Shift&6",
+                    "Ctrl&Shift&6",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "211",
+                    "エクセル",
+                    "上のセルの数式をコピー",
+                    "Ctrl&Shift&7",
+                    "Ctrl&Shift&7",
+                    "Ctrl&Shift&7",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "212",
+                    "エクセル",
+                    "非表示になっている行を再表示する",
+                    "Ctrl&Shift&9",
+                    "Ctrl&Shift&9",
+                    "Ctrl&Shift&9",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "213",
+                    "エクセル",
+                    "フィルターを付ける/外す",
+                    "Ctrl&Shift&L",
+                    "Ctrl&Shift&L",
+                    "Ctrl&Shift&L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "214",
+                    "エクセル",
+                    "コメント付きのセルを選択する",
+                    "Ctrl&Shift&O",
+                    "Ctrl&Shift&O",
+                    "Ctrl&Shift&O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "215",
+                    "エクセル",
+                    "前のブックに移動する",
+                    "Ctrl&Shift&Tab",
+                    "Ctrl&Shift&Tab",
+                    "Ctrl&Shift&Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "216",
+                    "エクセル",
+                    "合計を入力する",
+                    "Ctrl&Shift＆=",
+                    "Ctrl&Shift＆=",
+                    "Ctrl&Shift＆=",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "217",
+                    "エクセル",
+                    "罫線を削除する",
+                    "Ctrl&Shift&ﾊﾞｯｸｽﾗｯｼｭ",
+                    "Ctrl&Shift&＿",
+                    "Ctrl&Shift&＿",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "218",
+                    "エクセル",
+                    "表示形式を標準にする",
+                    "Ctrl&Shift&～",
+                    "Ctrl&Shift&～",
+                    "Ctrl&Shift&～",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "219",
+                    "エクセル",
+                    "列を選択する、チェックボックスのつけ外し",
+                    "Ctrl&Space",
+                    "Ctrl&Space",
+                    "Ctrl&Space",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "220",
+                    "エクセル",
+                    "確定後の項目を削除",
+                    "Delete",
+                    "Delete",
+                    "Delete",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "221",
+                    "エクセル",
+                    "グラフシートを作成する",
+                    "F11",
+                    "F11",
+                    "F11",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "222",
+                    "エクセル",
+                    "ファイルを名前を付けて保存する",
+                    "F12",
+                    "F12",
+                    "F12",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "223",
+                    "エクセル",
+                    "セルを編集状態にする",
+                    "F2",
+                    "F2",
+                    "F2",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "224",
+                    "エクセル",
+                    "絶対参照/相対参照を切り替える、直前の操作を繰り返す",
+                    "F4",
+                    "F4",
+                    "F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "225",
+                    "エクセル",
+                    "アクティブの位置を切り替える",
+                    "F6",
+                    "F6",
+                    "F6",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "226",
+                    "エクセル",
+                    "矢印キーで選択範囲を拡張する",
+                    "F8",
+                    "F8",
+                    "F8",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "227",
+                    "エクセル",
+                    "選択を解除する",
+                    "Shift&Backspace",
+                    "Shift&BS",
+                    "Shift&BS",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "228",
+                    "エクセル",
+                    "数式バーを拡げる/元に戻す",
+                    "Shift&Ctrl&U",
+                    "Shift&Ctrl&U",
+                    "Shift&Ctrl&U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "229",
+                    "エクセル",
+                    "矢印方向にワープしながらセルを選択する",
+                    "Shift&Ctrl&矢印",
+                    "Shift&Ctrl&矢印",
+                    "Shift&Ctrl&←",
+                    "Shift&Ctrl&→",
+                    "Shift&Ctrl&↑",
+                    "Shift&Ctrl&↓"
+                ],
+                [
+                    "230",
+                    "エクセル",
+                    "シートを選択する",
+                    "Shift&Ctrl&PgUp(PgDn)",
+                    "Shift&Ctrl&PgUp(PgDn)",
+                    "Shift&Ctrl&PgUp",
+                    "Shift&Ctrl&PgDn",
+                    "",
+                    ""
+                ],
+                [
+                    "231",
+                    "エクセル",
+                    "上方向に移動する",
+                    "Shift&Enter",
+                    "Shift&Enter",
+                    "Shift&Enter",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "232",
+                    "エクセル",
+                    "右クリックメニューを開く",
+                    "Shift&F10",
+                    "Shift&F10",
+                    "Shift&F10",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "233",
+                    "エクセル",
+                    "関数のダイアログボックスを表示する",
+                    "Shift&F3",
+                    "Shift&F3",
+                    "Shift&F3",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "234",
+                    "エクセル",
+                    "「選択範囲に追加」モードにする",
+                    "Shift&F8",
+                    "Shift&F8",
+                    "Shift&F8",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "235",
+                    "エクセル",
+                    "行を選択する",
+                    "Shift&Space",
+                    "Shift&Space",
+                    "Shift&Space",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "236",
+                    "エクセル",
+                    "左方向に移動する",
+                    "Shift&Tab",
+                    "Shift&Tab",
+                    "Shift&Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "237",
+                    "エクセル",
+                    "矢印方向にセルを選択する",
+                    "Shift&矢印",
+                    "Shift&矢印",
+                    "Shift&←",
+                    "Shift&→",
+                    "Shift&↑",
+                    "Shift&↓"
+                ],
+                [
+                    "238",
+                    "その他",
+                    "行追加（削除）",
+                    "Ctrl＋＋（－）",
+                    "Ctrl＆+（－）",
+                    "Ctrl＆+",
+                    "Ctrl＆－",
+                    "",
+                    ""
+                ],
+                [
+                    "239",
+                    "その他",
+                    "形式を選択して貼り付け",
+                    "Ctrl＋Alt＋V",
+                    "Ctrl＆Alt＆V",
+                    "Ctrl＆Alt＆V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "240",
+                    "その他",
+                    "リボンの開閉",
+                    "Ctrl＋F1",
+                    "Ctrl＆F1",
+                    "Ctrl＆F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "241",
+                    "その他",
+                    "ハイパーリンクの挿入",
+                    "Ctrl＋K",
+                    "Ctrl＆K",
+                    "Ctrl＆K",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "242",
+                    "その他",
+                    "新しいアイテム（画面）を開く",
+                    "Ctrl＋N",
+                    "Ctrl＆N",
+                    "Ctrl＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "243",
+                    "その他",
+                    "ファイルを開く",
+                    "Ctrl＋O",
+                    "Ctrl＆O",
+                    "Ctrl＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "244",
+                    "その他",
+                    "シートの切り替え",
+                    "Ctrl＋PgDn（PgUｐ）",
+                    "Ctrl＆PgDn（PgUｐ）",
+                    "Ctrl＆PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "245",
+                    "その他",
+                    "ステータスバーの開閉",
+                    "Ctrl＋shift＋F1",
+                    "Ctrl＆shift＆F1",
+                    "Ctrl＆shift＆F1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "246",
+                    "その他",
+                    "複数アイテム選択時におけるキー操作",
+                    "Ctrl＋矢印＋Space",
+                    "Ctrl＆矢印＆Space",
+                    "Ctrl＆→＆Space",
+                    "Ctrl＆←＆Space",
+                    "Ctrl＆↑＆Space",
+                    "Ctrl＆↓＆Space"
+                ],
+                [
+                    "247",
+                    "その他",
+                    "タスクビューメニュー表示",
+                    "Shift＋F10",
+                    "Shift＆F10",
+                    "Shift＆F10",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "248",
+                    "その他",
+                    "パスのコピー",
+                    "Shift＋アプリ",
+                    "Shift＆アプリ",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "249",
+                    "その他",
+                    "ウィンドウ最大化（または４分の１）",
+                    "Win+↑",
+                    "Win＆↑",
+                    "Win＆↑",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "250",
+                    "その他",
+                    "半分のサイズになる",
+                    "Win+→（←）",
+                    "Win＆→（←）",
+                    "Win＆→",
+                    "Win＆←",
+                    "",
+                    ""
+                ],
+                [
+                    "251",
+                    "その他",
+                    "タスクバーからアプリを起動",
+                    "Win+1（~0）",
+                    "Win＆1（~0）",
+                    "Win＆1",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "252",
+                    "その他",
+                    "hsc",
+                    "Win+A",
+                    "Win＆A",
+                    "Win＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "253",
+                    "その他",
+                    "システムトレイにカーソルを移す",
+                    "Win+B",
+                    "Win＆B",
+                    "Win＆B",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "254",
+                    "その他",
+                    "仮想デスクトップの切り替え",
+                    "Win+Ctrl+←/→",
+                    "Win＆Ctrl＆→（←）",
+                    "Win＆Ctrl＆→",
+                    "Win＆Ctrl＆←",
+                    "",
+                    ""
+                ],
+                [
+                    "255",
+                    "その他",
+                    "仮想デスクトップを追加",
+                    "Win+Ctrl+D",
+                    "Win＆Ctrl＆D",
+                    "Win＆Ctrl＆D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "256",
+                    "その他",
+                    "仮想デスクトップを閉じる",
+                    "Win+Ctrl+F4",
+                    "Win＆Ctrl＆F4",
+                    "Win＆Ctrl＆F4",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "257",
+                    "その他",
+                    "デスクトップを表示",
+                    "Win+D",
+                    "Win＆D",
+                    "Win＆D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "258",
+                    "その他",
+                    "エクスプローラの起動",
+                    "Win+E",
+                    "Win＆E",
+                    "Win＆E",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "259",
+                    "その他",
+                    "設定画面の表示",
+                    "Win+I",
+                    "Win＆I",
+                    "Win＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "260",
+                    "その他",
+                    "PCのロック",
+                    "Win+L",
+                    "Win＆L",
+                    "Win＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "261",
+                    "その他",
+                    "すべてのアプリケーションを最小化する",
+                    "Win&M",
+                    "Win&M",
+                    "Win&M",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "262",
+                    "その他",
+                    "通知パネルを開く",
+                    "Win+N",
+                    "Win＆N",
+                    "Win＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "263",
+                    "その他",
+                    "ファイル名を指定して実行",
+                    "Win+R",
+                    "Win＆R",
+                    "Win＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "264",
+                    "その他",
+                    "PCとネット検索",
+                    "Win+S",
+                    "Win＆S",
+                    "Win＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "265",
+                    "その他",
+                    "Windowsショートカットメニューを表示",
+                    "Win&X",
+                    "Win&X",
+                    "Win&X",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "266",
+                    "その他",
+                    "ウィジェットパネルを開く",
+                    "Win+W",
+                    "Win＆W",
+                    "Win＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "267",
+                    "その他",
+                    "切り取り＆スケッチアプリ起動",
+                    "Win+Shift+S",
+                    "Win＆Shift＆S",
+                    "Win＆Shift＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "268",
+                    "その他",
+                    "タスクビューを開く",
+                    "Win+Tab",
+                    "Win＆Tab",
+                    "Win＆Tab",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "269",
+                    "その他",
+                    "デスクトップを表示する",
+                    "Win&D",
+                    "Win&D",
+                    "Win&D",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "270",
+                    "その他",
+                    "PCをロックする",
+                    "Win&L",
+                    "Win&L",
+                    "Win&L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "271",
+                    "その他",
+                    "ウィンドウを最大化する",
+                    "Win&↑",
+                    "Win&↑",
+                    "Win&↑",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "272",
+                    "その他",
+                    "ウィンドウを画面右半分に固定する",
+                    "Win&→",
+                    "Win&＆",
+                    "Win&＆",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "273",
+                    "その他",
+                    "ウィンドウサイズを元に戻す、最小化する",
+                    "Win&↓",
+                    "Win&↓",
+                    "Win&↓",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "274",
+                    "その他",
+                    "ウィンドウを画面左半分に固定する",
+                    "Win&←",
+                    "Win&←",
+                    "Win&←",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "275",
+                    "ワード",
+                    "文書を開く。",
+                    "Ctrl+O",
+                    "Ctrl＆O",
+                    "Ctrl＆O",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "276",
+                    "ワード",
+                    "文書を新規作成する。",
+                    "Ctrl+N",
+                    "Ctrl＆N",
+                    "Ctrl＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "277",
+                    "ワード",
+                    "文書を保存します。",
+                    "Ctrl+S",
+                    "Ctrl＆S",
+                    "Ctrl＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "278",
+                    "ワード",
+                    "文書を閉じます。",
+                    "Ctrl+W",
+                    "Ctrl＆W",
+                    "Ctrl＆W",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "279",
+                    "ワード",
+                    "選択したコンテンツをクリップボードに切り取る。",
+                    "Ctrl+X",
+                    "Ctrl＆X",
+                    "Ctrl＆X",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "280",
+                    "ワード",
+                    "選んだ内容をクリップボードにコピーする。",
+                    "Ctrl+C",
+                    "Ctrl＆C",
+                    "Ctrl＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "281",
+                    "ワード",
+                    "クリップボードの内容を貼り付ける。",
+                    "Ctrl+V",
+                    "Ctrl＆V",
+                    "Ctrl＆V",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "282",
+                    "ワード",
+                    "すべてのドキュメントコンテンツを選択する。",
+                    "Ctrl+A",
+                    "Ctrl＆A",
+                    "Ctrl＆A",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "283",
+                    "ワード",
+                    "テキストに太字の書式を適用する。",
+                    "Ctrl+B",
+                    "Ctrl＆B",
+                    "Ctrl＆B",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "284",
+                    "ワード",
+                    "テキストに斜体の書式を適用する。",
+                    "Ctrl+I",
+                    "Ctrl＆I",
+                    "Ctrl＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "285",
+                    "ワード",
+                    "テキストに下線の書式を適用する。",
+                    "Ctrl+U",
+                    "Ctrl＆U",
+                    "Ctrl＆U",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "286",
+                    "ワード",
+                    "フォントサイズを1ポイント小さくする。",
+                    "Ctrl+左角かっこ([)",
+                    "Ctrl＆[",
+                    "Ctrl＆[",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "287",
+                    "ワード",
+                    "フォントサイズを1ポイント大きくする。",
+                    "Ctrl+右角かっこ([)",
+                    "Ctrl＆］",
+                    "Ctrl＆］",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "288",
+                    "ワード",
+                    "文字列を中央揃えにする。",
+                    "Ctrl+E",
+                    "Ctrl＆E",
+                    "Ctrl＆E",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "289",
+                    "ワード",
+                    "文字列を左揃えにする。",
+                    "Ctrl+L",
+                    "Ctrl＆L",
+                    "Ctrl＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "290",
+                    "ワード",
+                    "文字列を右揃えにする。",
+                    "Ctrl+R",
+                    "Ctrl＆R",
+                    "Ctrl＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "291",
+                    "ワード",
+                    "コマンドを取り消す。",
+                    "Esc",
+                    "Esc",
+                    "Esc",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "292",
+                    "ワード",
+                    "直前の操作を元に戻す。",
+                    "Ctrl+Z",
+                    "Ctrl＆Z",
+                    "Ctrl＆Z",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "293",
+                    "ワード",
+                    "直前の操作をやり直す。",
+                    "Ctrl+Y",
+                    "Ctrl＆Y",
+                    "Ctrl＆Y",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "294",
+                    "ワード",
+                    "ズーム倍率を調整する。",
+                    "Alt+W、Q、[ズーム]ダイアログボックスのTabを使用して、目的の値に移動します。",
+                    "Alt＆W＆Q",
+                    "Alt＆W＆Q",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "295",
+                    "ワード",
+                    "文書ウィンドウを分割する。",
+                    "Ctrl+Alt+S",
+                    "Ctrl＆Alt＆S",
+                    "Ctrl＆Alt＆S",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "296",
+                    "ワード",
+                    "文書ウィンドウの分割を解除する。",
+                    "Alt+Shift+CまたはCtrl+Alt+S",
+                    "Alt＆Shift＆C、Ctrl＆Alt＆S",
+                    "Alt＆Shift＆C",
+                    "Ctrl＆Alt＆S",
+                    "",
+                    ""
+                ],
+                [
+                    "297",
+                    "ワード",
+                    "カーソルを左へ1語分移動する",
+                    "Ctrl+←",
+                    "Ctrl＆←",
+                    "Ctrl＆←",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "298",
+                    "ワード",
+                    "カーソルを右へ1語分移動する",
+                    "Ctrl+→",
+                    "Ctrl＆＆",
+                    "Ctrl＆＆",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "299",
+                    "ワード",
+                    "カーソルを1段落ずつ上に移動する",
+                    "Ctrl+↑",
+                    "Ctrl＆↑",
+                    "Ctrl＆↑",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "300",
+                    "ワード",
+                    "カーソルを1段落ずつ下に移動する",
+                    "Ctrl+↓",
+                    "Ctrl＆↓",
+                    "Ctrl＆↓",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "301",
+                    "ワード",
+                    "カーソルを現在の行の末尾に移動する",
+                    "End",
+                    "End",
+                    "End",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "302",
+                    "ワード",
+                    "カーソルを現在の行の先頭に移動する",
+                    "ホーム",
+                    "Home",
+                    "Home",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "303",
+                    "ワード",
+                    "カーソルをメッセージ本文の一番上に移動する",
+                    "Ctrl+Alt+PgUp",
+                    "Ctrl＆Alt＆PgUp",
+                    "Ctrl＆Alt＆PgUp",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "304",
+                    "ワード",
+                    "画面の下部にマウスを移動する。",
+                    "Ctrl+Alt+PgDn",
+                    "Ctrl＆Alt＆PgDn",
+                    "Ctrl＆Alt＆PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "305",
+                    "ワード",
+                    "ドキュメントビューを1画面分上にスクロールして、カーソルを移動します。",
+                    "PgUp",
+                    "PgUp",
+                    "PgUp",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "306",
+                    "ワード",
+                    "ドキュメントビューを1画面分下にスクロールして、カーソルを移動します。",
+                    "PgDn",
+                    "PgDn",
+                    "PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "307",
+                    "ワード",
+                    "カーソルをメッセージ本文の一番上に移動する",
+                    "Ctrl+PgDn",
+                    "Ctrl＆PgDn",
+                    "Ctrl＆PgDn",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "308",
+                    "ワード",
+                    "カーソルをメッセージ本文の一番上に移動する",
+                    "Ctrl+PgUp",
+                    "Ctrl＆PgUp",
+                    "Ctrl＆PgUp",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "309",
+                    "ワード",
+                    "カーソルを行の末尾に移動する",
+                    "Ctrl+End",
+                    "Ctrl＆End",
+                    "Ctrl＆End",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "310",
+                    "ワード",
+                    "カーソルを行の先頭に移動する",
+                    "Ctrl+Home",
+                    "Ctrl＆Home",
+                    "Ctrl＆Home",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "311",
+                    "ワード",
+                    "カーソルを前のリビジョンの場所に移動します。",
+                    "Shift+F5",
+                    "Shift＆F5",
+                    "Shift＆F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "312",
+                    "ワード",
+                    "ドキュメントが最後に閉じられる前に作成された最後のリビジョンの場所にカーソルを移動します。",
+                    "ドキュメントを開いた直後にShift+F5を押します。",
+                    "ドキュメントを開いた直後にShift＆F5を押します。",
+                    "Shift＆F5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "313",
+                    "ワード",
+                    "テキストボックス、画像などのフローティングシェイプを切り替えます。",
+                    "Ctrl+Alt+5の後、Tabを繰り返し押す",
+                    "Ctrl＆Alt＆5の後、Tabを繰り返し押す",
+                    "Ctrl＆Alt＆5",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "314",
+                    "ワード",
+                    "フローティングシェイプのナビゲーションを終了し、標準のナビゲーションに戻ります。",
+                    "Esc",
+                    "Esc",
+                    "Esc",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "315",
+                    "ワード",
+                    "[ナビゲーション]作業ウィンドウを表示して、ドキュメントコンテンツ内を検索します。",
+                    "Ctrl+F",
+                    "Ctrl＆F",
+                    "Ctrl＆F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "316",
+                    "ワード",
+                    "[ジャンプ]ダイアログボックスを表示して、特定のページに移動します。",
+                    "Ctrl+G",
+                    "Ctrl＆G",
+                    "Ctrl＆G",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "317",
+                    "ワード",
+                    "ドキュメントに加えられた4つの以前の変更の場所を循環します。",
+                    "Ctrl+Alt+Z",
+                    "Ctrl＆Alt＆Z",
+                    "Ctrl＆Alt＆Z",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "318",
+                    "ワード",
+                    "画像の挿入",
+                    "Alt→N→P",
+                    "Alt＆N＆P",
+                    "Alt＆N＆P",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "319",
+                    "ワード",
+                    "画像サイズの変更",
+                    "Alt→J→P→S→Z",
+                    "Alt＆J＆P＆S＆Z",
+                    "Alt＆J＆P＆S＆Z",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "320",
+                    "ワード",
+                    "表の挿入",
+                    "Alt→N→T→I",
+                    "Alt＆N＆T＆I",
+                    "Alt＆N＆T＆I",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "321",
+                    "ワード",
+                    "表の行の削除",
+                    "Alt+J+L+D+R",
+                    "Alt＆J＆L＆D＆R",
+                    "Alt＆J＆L＆D＆R",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "322",
+                    "ワード",
+                    "表の列の削除",
+                    "Alt+J+L+D+C",
+                    "Alt＆J＆L＆D＆C",
+                    "Alt＆J＆L＆D＆C",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "323",
+                    "ワード",
+                    "フォントの変更",
+                    "Alt+H+F+F",
+                    "Alt＆H＆F＆F",
+                    "Alt＆H＆F＆F",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "324",
+                    "ワード",
+                    "フォントのサイズの拡大",
+                    "Ctrl+Shift+＞",
+                    "Ctrl＆Shift＆＞",
+                    "Ctrl＆Shift＆＞",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "325",
+                    "ワード",
+                    "フォントのサイズの縮小",
+                    "Ctrl+Shift+＜",
+                    "Ctrl＆Shift＆＜",
+                    "Ctrl＆Shift＆＜",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "326",
+                    "ワード",
+                    "箇条書き",
+                    "Ctrl+Shift+L",
+                    "Ctrl＆Shift＆L",
+                    "Ctrl＆Shift＆L",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "327",
+                    "ワード",
+                    "プレーンテキストで貼り付け",
+                    "Alt+H+V+T",
+                    "Alt＆H＆V＆T",
+                    "Alt＆H＆V＆T",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "328",
+                    "ワード",
+                    "書式の解除",
+                    "Ctrl+Space",
+                    "Ctrl＆Space",
+                    "Ctrl＆Space",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "329",
+                    "ワード",
+                    "標準スタイル",
+                    "Ctrl+Shift+N",
+                    "Ctrl＆Shift＆N",
+                    "Ctrl＆Shift＆N",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "330",
+                    "ワード",
+                    "改ページの挿入",
+                    "Ctrl+Enter",
+                    "Ctrl＆Enter",
+                    "Ctrl＆Enter",
+                    "",
+                    "",
+                    ""
+                ]
+            ]
+
+            let s_deci = JSON.parse(localStorage.getItem("s_deci")) || new Array(s_words.length).fill(false);
+            let currentIndex = 1;
+            let chktest = false;
+            let showshortcut = false;
+            document.getElementById("wordIndex").max = s_words.length - 1;
+
+            function saveDeci() {
+                localStorage.setItem("s_deci", JSON.stringify(s_deci));
+            }
+
+            function displayData(index) {
+                if (index < 1 || index >= s_words.length) return;
+                document.getElementById("wordIndex").value = index;
+                document.getElementById("starttest").textContent = chktest ? "始" : "止";
+                document.getElementById("checkStatus").textContent = s_deci[index] ? "済" : "未";
+                document.getElementById("ope").innerHTML = `${s_words[index][1]}<br>${s_words[index][2]}`;
+                let ansElement = document.getElementById("ans");
+                // 要素が存在で分岐
+
+                if (!ansElement) {
+                    document.getElementById("short").innerHTML = `<br>${showshortcut ? s_words[index][3] : ""}`;
+                } else {
+                    let shortElement = document.getElementById("short");
+                    const targetText = shortElement.innerText.normalize().trim();
+
+                    if (!targetText) {
+                        document.getElementById("short").innerHTML = `<br>${showshortcut ? "【不正解】" : ""}${showshortcut ? s_words[index][3] : ""}`;
+                        typedKeys = "";
+                        return;
+                    }
+
+                    function normalizeInput(input) {
+                        return input.replace(/＆/g, '&'); // 全角＆を半角&に変換
+                    }
+
+                    if (s_words[index].slice(4).map(normalizeInput).includes(normalizeInput(targetText))) {
+                        document.getElementById("short").innerHTML = `<br>${showshortcut ? "【正解】" : ""}${showshortcut ? s_words[index][3] : ""}`;
+                        typedKeys = "";
+                        s_deci[currentIndex] = true;
+                        localStorage.setItem("s_deci", JSON.stringify(s_deci)); // ローカルストレージを更新
+                        saveDeci();
+                    } else {
+                        document.getElementById("short").innerHTML = `<br>${showshortcut ? "【不正解】" : ""}${showshortcut ? s_words[index][3] : ""}`;
+                        typedKeys = "";
+                    }
+                }
+            };
+
+
+            document.getElementById("next").addEventListener("click", function (event) {
+                event.stopImmediatePropagation();
+                if (chktest) {
+                    do {
+                        if (currentIndex < s_words.length - 1) currentIndex++;
+                        else return; // 最後の単語に達したら処理を終了
+                    } while (s_deci[currentIndex]);
+                } else {
+                    if (currentIndex < s_words.length - 1) currentIndex++;
+                }
+                showshortcut = false;
+                displayData(currentIndex);
+            });
+
+            document.getElementById("prev").addEventListener("click", function (event) {
+                event.stopImmediatePropagation();
+                if (chktest) {
+                    do {
+                        if (currentIndex > 1) currentIndex--;
+                        else return; // 最初の単語に達したら処理を終了
+                    } while (s_deci[currentIndex]);
+                } else {
+                    if (currentIndex > 1) currentIndex--;
+                }
+                showshortcut = false;
+                displayData(currentIndex);
+            });
+
+            document.getElementById("test").addEventListener("click", function () {
+                if (chktest === false) {
+                    chktest = true;
+                } else {
+                    chktest = false;
+                };
+                displayData(currentIndex);
+            });
+
+            document.getElementById("check").addEventListener("click", function () {
+                s_deci[currentIndex] = !s_deci[currentIndex];
+                localStorage.setItem("s_deci", JSON.stringify(s_deci)); // ローカルストレージを更新
+                saveDeci();
+                displayData(currentIndex);
+            });
+
+            document.getElementById("show").addEventListener("click", function (event) {
+                event.stopImmediatePropagation();
+                let anselm = document.getElementById("short")
+                showshortcut = true;
+                displayData(currentIndex);
+            });
+
+            document.getElementById("wordIndex").addEventListener("input", function (event) {
+                let newIndex = parseInt(event.target.value, 10);
+                if (!isNaN(newIndex) && newIndex >= 1 && newIndex < s_words.length) {
+                    currentIndex = newIndex;
+                    showshortcut = false;
+                    displayData(newIndex);
+                }
+            });
+
+            document.getElementById("reset").addEventListener("click", function () {
+                if (confirm("リセットしますか？")) {
+                    s_deci = new Array(s_words.length).fill(false);
+                    localStorage.setItem("s_deci", JSON.stringify(s_deci));
+                    displayData(currentIndex);
+                }
+
+            });
+
+            displayData(currentIndex);
+
+
+            //****************************keybordのコード***********************************
+
+            const keys = document.querySelectorAll('.key');
+            const displayFrame = document.getElementById('displayFrame'); // ディスプレイエリアの取得
+
+            keys.forEach(key => {
+                // クリックイベントの追加
+                key.addEventListener('click', () => handleKeyPress(key));
+
+                // キーボード操作用（オプション）
+                key.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleKeyPress(key);
+                    }
+                });
+            });
+
+            let typedKeys = ""; // 押されたキーを蓄積する変数
+
+            function handleKeyPress(key) {
+                const keyText = getKeyDisplayText(key);
+                if (!chktest) return;
+                // Delキーの処理
+                if (keyText === "Del") {
+                    typedKeys = "";
+                    document.getElementById("short").innerHTML = `<br>${typedKeys}`;
+                } else {
+                    // それ以外のキーは蓄積
+                    if (typedKeys !== "") {
+                        typedKeys += '＆' + keyText;
+                    } else {
+                        typedKeys += keyText;
+                    }
+                    // 蓄積結果を表示
+                    document.getElementById("short").innerHTML = `<br id="ans">${typedKeys}`;
+                }
+
+            }
+            // キーに複数の表示がある場合に下部のテキストを表示する処理
+            function getKeyDisplayText(key) {
+
+                const spanBR = key.querySelector('.b-r');
+                const spanTL = key.querySelector('.t-l');
+                if (spanBR && spanTL) {
+                    return spanBR.textContent.trim(); // 下部のテキストを表示
+                } else {
+                    return key.textContent.trim(); // 単一のテキストを表示
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
